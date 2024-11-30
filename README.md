@@ -9,8 +9,7 @@
 Are you tired writing [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) in each 
 script to reference another script, even though this can never go wrong (when using 
 [`[RequireComponent]`](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/RequireComponent.html))? This 
-package named AutoReference will solve this problem by automatically referencing the other component without any extra 
-code.
+package named AutoReference solves that problem by automatically referencing other script without any extra code.
 
 ## Installation instructions
 
@@ -23,11 +22,10 @@ code.
 
 ## Limitations
 
-- It is impossible to reference classes that do not inherit from 
-  [Component](https://docs.unity3d.com/ScriptReference/Component.html), or the 
-  [IReferenceable](Documentation~/IReferenceable.md) interface.
+- It is impossible to reference classes that cannot be referenced through the Unity Editor (that do not inherit from 
+  [Component](https://docs.unity3d.com/ScriptReference/Component.html).
 - AutoReference works incorrectly when a prefab in a scene auto references outside the prefab's scope. This is a known
-  bug with probably no solution.
+  bug.
 
 ## Workflow
 
