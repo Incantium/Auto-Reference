@@ -1,4 +1,4 @@
-﻿# Audio Player Plus
+﻿# Auto Reference
 
 `Unity 2022.3`
 `.NET Standard 2.1`
