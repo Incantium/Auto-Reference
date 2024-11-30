@@ -1,0 +1,90 @@
+﻿# Audio Player Plus
+
+`Unity 2022.3`
+`.NET Standard 2.1`
+`C# 9.0`
+
+## Overview
+
+Are you tired writing [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) in each 
+script to reference another script, even though this can never go wrong (when using 
+[`[RequireComponent]`](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/RequireComponent.html))? This 
+package named AutoReference will solve this problem by automatically referencing the other component without any extra 
+code.
+
+## Installation instructions
+
+- Open the [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) in a Unity project.
+- Click on the "+" button to add a new package.
+- Click on "Install package from git URL...".
+- Put in `https://github.com/Incantium/Auto-Reference.git`.
+- Click on "Install" or press enter.
+- Enjoy!
+
+## Limitations
+
+- It is impossible to reference classes that do not inherit from 
+  [Component](https://docs.unity3d.com/ScriptReference/Component.html), or the 
+  [IReferenceable](Documentation~/IReferenceable.md) interface.
+- AutoReference works incorrectly when a prefab in a scene auto references outside the prefab's scope. This is a known
+  bug with probably no solution.
+
+## Workflow
+
+Originally, you may have code like this:
+
+```csharp
+using UnityEngine;
+
+[RequireComponent(typeof(RigidBody))]
+public class ExampleClass : MonoBehaviour
+{
+    private RigidBody rb;
+    
+    private void Start() 
+    {
+        rb = GetComponent<RigidBody>();
+    }
+}
+```
+
+But with AutoReference, you can enhance it to this:
+
+```csharp
+using Incantium.Attributes;
+using UnityEngine;
+
+[RequireComponent(typeof(RigidBody))]
+public class BetterExampleClass : MonoBehaviour
+{
+    [SerializeField]
+    [AutoReference]
+    private RigidBody rb;
+}
+```
+
+## References
+
+| Class                                              | Description                                                            |
+|----------------------------------------------------|------------------------------------------------------------------------|
+| [AutoReference](Documentation~/AutoReference.md)   | The AutoReference attribute to automatically reference another script. |
+| [IReferenceable](Documentation~/IReferenceable.md) | Interface for other classes able to be auto referenced.                |
+| [Target](Documentation~/Target.md)                 | The target location of the automatically referenced script.            |
+
+## Frequently Asked Questions
+
+### Why does a warning appear when I use AutoReference?
+
+![Warning not referenceable.png](Images~/Warning%20not%20referenceable.png)
+
+This warning shows up when the field to be auto referenced is not referenceable through the Unity Editor. Only the 
+classes inherited from [Component](https://docs.unity3d.com/ScriptReference/Component.html) are referenceable through
+the Unity Editor. The exception is the [IReferenceable](Documentation~/IReferenceable.md) interface, which also makes
+it possible to be auto referenced.
+
+### It is possible for custom classes to be auto referenced?
+
+Yes. It is possible for classes that don't inherit from 
+[Component](https://docs.unity3d.com/ScriptReference/Component.html) to be auto referenced. These classes need to 
+implement the [IReferenceable](Documentation~/IReferenceable.md) interface to function properly with the AutoReference
+attribute.
