@@ -23,7 +23,7 @@ package named AutoReference solves that problem by automatically referencing oth
 ## Limitations
 
 - It is impossible to reference classes that cannot be referenced through the Unity Editor (that do not inherit from 
-  [Component](https://docs.unity3d.com/ScriptReference/Component.html).
+  [Component](https://docs.unity3d.com/ScriptReference/Component.html)).
 - AutoReference works incorrectly when a prefab in a scene auto references outside the prefab's scope. This is a known
   bug.
 
@@ -75,14 +75,16 @@ public class BetterExampleClass : MonoBehaviour
 
 ![Warning not referenceable.png](Images~/Warning%20not%20referenceable.png)
 
-This warning shows up when the field to be auto referenced is not referenceable through the Unity Editor. Only the 
-classes inherited from [Component](https://docs.unity3d.com/ScriptReference/Component.html) are referenceable through
-the Unity Editor. The exception is the [IReferenceable](Documentation~/IReferenceable.md) interface, which also makes
-it possible to be auto referenced.
+This warning shows up when the field to be auto referenced is not referenceable through the Unity Editor (like all 
+primitive data structures such as integers, floats, and booleans). Only the classes inherited from 
+[Component](https://docs.unity3d.com/ScriptReference/Component.html) are referenceable through the Unity Editor. The 
+exception is the [IReferenceable](Documentation~/IReferenceable.md) interface, which also makes it possible to be auto 
+referenced.
 
 ### It is possible for custom classes to be auto referenced?
 
 Yes. It is possible for classes that don't inherit from 
-[Component](https://docs.unity3d.com/ScriptReference/Component.html) to be auto referenced. These classes need to 
-implement the [IReferenceable](Documentation~/IReferenceable.md) interface to function properly with the AutoReference
-attribute.
+[Component](https://docs.unity3d.com/ScriptReference/Component.html) to be auto referenced, such as 
+[serializable](https://learn.microsoft.com/en-us/dotnet/api/system.serializableattribute?view=net-9.0) classes. These 
+classes need to implement the [IReferenceable](Documentation~/IReferenceable.md) interface to function properly with the
+AutoReference attribute.

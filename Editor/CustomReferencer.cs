@@ -7,7 +7,7 @@ namespace Incantium.Attributes.Editor
     /// <summary>
     /// Class representing the auto referencing of <see cref="IReferenceable"/> implementations.
     /// </summary>
-    public class CustomReferencer : IReferencer
+    internal sealed class CustomReferencer : IReferencer
     {
         /// <summary>
         /// The serialized property to auto reference.
@@ -25,7 +25,7 @@ namespace Incantium.Attributes.Editor
         /// <inheritdoc cref="IReferencer.valid"/>
         public bool valid => reference.reference;
 
-        public CustomReferencer(SerializedProperty property, IReferenceable reference)
+        internal CustomReferencer(SerializedProperty property, IReferenceable reference)
         {
             this.property = property;
             this.reference = reference;

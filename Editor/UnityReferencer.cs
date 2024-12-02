@@ -7,7 +7,7 @@ namespace Incantium.Attributes.Editor
     /// <summary>
     /// Class representing the auto referencing of <see cref="UnityEngine.Component"/> implementations.
     /// </summary>
-    public class UnityReferencer : IReferencer
+    internal sealed class UnityReferencer : IReferencer
     {
         /// <summary>
         /// The serialized property to auto reference.
@@ -20,7 +20,7 @@ namespace Incantium.Attributes.Editor
         /// <inheritdoc cref="IReferencer.valid"/>
         public bool valid => typeof(Component).IsAssignableFrom(type) && property.objectReferenceValue != null;
 
-        public UnityReferencer(SerializedProperty property, Type type)
+        internal UnityReferencer(SerializedProperty property, Type type)
         {
             this.property = property;
             this.type = type;

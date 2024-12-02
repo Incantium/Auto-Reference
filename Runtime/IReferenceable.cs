@@ -12,11 +12,11 @@ namespace Incantium.Attributes
         /// <summary>
         /// The object to automatically get and set.
         /// </summary>
-        public Object reference { get; set; }
+        Object reference { get; set; }
         
         /// <summary>
         /// The typing to search for through auto referencing.
         /// </summary>
-        public Type referenceType { get; }
+        Type referenceType { get; }
     }
 }

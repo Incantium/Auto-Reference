@@ -6,7 +6,7 @@ namespace Incantium.Attributes.Editor
     /// Interface for implementations used by the <see cref="AutoReference"/> and <see cref="AutoReferenceDrawer"/> to
     /// automatically reference components through the editor.
     /// </summary>
-    public interface IReferencer
+    internal interface IReferencer
     {
         /// <summary>
         /// The target typing to auto reference.

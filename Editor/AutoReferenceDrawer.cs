@@ -38,7 +38,7 @@ namespace Incantium.Attributes.Editor
             if (searcher.valid) return;
             
             EditorGUI.HelpBox(position, $"Unable to locate missing '{searcher.type}' for auto referencing at " +
-                                        $"the {auto.target.GenerateMessage()}.", MessageType.Error);
+                                        $"{auto.target.GenerateMessage()}.", MessageType.Error);
         }
 
         /// <summary>

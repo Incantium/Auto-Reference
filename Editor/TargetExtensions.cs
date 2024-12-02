@@ -6,7 +6,7 @@ namespace Incantium.Attributes.Editor
     /// <summary>
     /// Class representing methods to be called from the <see cref="Target"/> enum.
     /// </summary>
-    public static class TargetExtensions
+    internal static class TargetExtensions
     {
         /// <summary>
         /// Method to use GetComponent on the correct <see cref="Target"/>.
@@ -17,10 +17,10 @@ namespace Incantium.Attributes.Editor
         /// <returns>The component to search for, or null when not found.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the <see cref="Target"/> enum is used outside its
         /// options.</exception>
-        public static Component GetComponent(this Target target, Component component, Type type) => target switch
+        internal static Component GetComponent(this Target target, Component component, Type type) => target switch
         {
             Target.Current => component.GetComponent(type),
-            Target.Children => component.GetComponentInChildren(type),
+            Target.Child => component.GetComponentInChildren(type),
             Target.Parent => component.GetComponentInParent(type),
             _ => throw new ArgumentOutOfRangeException(nameof(target), target, null)
         };
@@ -32,11 +32,11 @@ namespace Incantium.Attributes.Editor
         /// <returns>A string denoting what object is targeted.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the <see cref="Target"/> enum is used outside its
         /// options.</exception>
-        public static string GenerateMessage(this Target target) => target switch
+        internal static string GenerateMessage(this Target target) => target switch
         {
-            Target.Current => "current game object",
-            Target.Children => "children game objects",
-            Target.Parent => "parent game object",
+            Target.Current => "the current game object",
+            Target.Child => "a child game object",
+            Target.Parent => "the parent game object",
             _ => throw new ArgumentOutOfRangeException(nameof(target), target, null)
         };
     }
