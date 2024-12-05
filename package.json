@@ -5,6 +5,7 @@
   "description": "Never use GetComponent in Awake or Start anymore. This attribute automatically references it for you.",
   "unity": "2022.3",
   "documentationUrl": "https://github.com/Incantium/Auto-Reference/blob/main/README.md",
+  "changelogUrl": "https://github.com/Incantium/Auto-Reference/releases",
   "licensesUrl": "https://github.com/Incantium/Auto-Reference/blob/main/LICENSE",
   "keywords": [
     "Package",
