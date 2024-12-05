@@ -36,9 +36,9 @@ namespace Incantium.Attributes.Editor
             searcher.Search(auto.target);
             
             if (searcher.valid) return;
-            
-            EditorGUI.HelpBox(position, $"Unable to locate missing '{searcher.type}' for auto referencing at " +
-                                        $"{auto.target.GenerateMessage()}.", MessageType.Error);
+
+            var message = $"Unable to locate missing '{searcher.type}' for auto referencing at {auto.target.GenerateMessage()}.";
+            EditorGUI.HelpBox(position, message, MessageType.Error);
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace Incantium.Attributes.Editor
                 searcher = new CustomReferencer(property, reference);
             }
             else if (!typeof(Component).IsAssignableFrom(fieldInfo.FieldType))
-            { 
-                EditorGUI.HelpBox(position, "Auto referencing is only applicable to component derived " +
-                                            "objects.", MessageType.Warning); 
+            {
+                var message = $"Auto referencing is only applicable to classes derived from '{typeof(Object)}' or '{typeof(IReferenceable)}'.";
+                EditorGUI.HelpBox(position, message, MessageType.Warning); 
                 return true;
             }
             else
