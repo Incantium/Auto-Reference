@@ -9,7 +9,7 @@ namespace Incantium.Attributes
     /// </summary>
     /// <remarks>This attribute only works for classes that implement <see cref="UnityEngine.Object"/> or those that
     /// implement <see cref="IReferenceable"/>.</remarks>
-    /// <seealso href="https://github.com/Incantium/Auto-Reference/blob/main/Documentation~/AutoReference.md">
+    /// <seealso href="https://github.com/Incantium/Auto-Reference/blob/main/Documentation~/API.md">
     /// AutoReference</seealso>
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class AutoReference : PropertyAttribute

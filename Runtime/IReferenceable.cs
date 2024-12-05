@@ -7,6 +7,8 @@ namespace Incantium.Attributes
     /// Interface for classes that don't implement <see cref="Object"/>, but are still able to be referenceable with
     /// <see cref="AutoReference"/>.
     /// </summary>
+    /// <seealso href="https://github.com/Incantium/Auto-Reference/blob/main/API~/IReferenceable.md">
+    /// IReferenceable</seealso>
     public interface IReferenceable
     {
         /// <summary>
