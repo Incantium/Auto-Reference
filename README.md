@@ -1,6 +1,6 @@
 ﻿# Auto Reference
 
-`Unity 2022.3`
+`Unity 2022.3 (or higher)`
 `.NET Standard 2.1`
 `C# 9.0`
 
@@ -70,6 +70,11 @@ public class BetterExampleClass : MonoBehaviour
 | [Target](API~/Target.md)                 | The target location of the automatically referenced script.            |
 
 ## Frequently Asked Questions
+
+### Which Unity versions are compatible with this package?
+
+This package is heavily tested in `Unity 2022.3.44f1` and `Unity 6000.0.25f1`. It is expected that this package also 
+works in older and newer versions of the Unity Editor because it is not dependent on any other Unity package.
 
 ### Why does a warning appear when I use AutoReference?
 
