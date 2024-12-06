@@ -1,6 +1,6 @@
 ﻿# Auto Reference
 
-`Unity 2022.3`
+`Unity 2022.3 (or higher)`
 `.NET Standard 2.1`
 `C# 9.0`
 
@@ -63,13 +63,18 @@ public class BetterExampleClass : MonoBehaviour
 
 ## References
 
-| Class                                              | Description                                                            |
-|----------------------------------------------------|------------------------------------------------------------------------|
-| [AutoReference](Documentation~/AutoReference.md)   | The AutoReference attribute to automatically reference another script. |
-| [IReferenceable](Documentation~/IReferenceable.md) | Interface for other classes able to be auto referenced.                |
-| [Target](Documentation~/Target.md)                 | The target location of the automatically referenced script.            |
+| Class                                    | Description                                                            |
+|------------------------------------------|------------------------------------------------------------------------|
+| [AutoReference](API~/AutoReference.md)   | The AutoReference attribute to automatically reference another script. |
+| [IReferenceable](API~/IReferenceable.md) | Interface for other classes able to be auto referenced.                |
+| [Target](API~/Target.md)                 | The target location of the automatically referenced script.            |
 
 ## Frequently Asked Questions
+
+### Which Unity versions are compatible with this package?
+
+This package is heavily tested in `Unity 2022.3.44f1` and `Unity 6000.0.25f1`. It is expected that this package also 
+works in older and newer versions of the Unity Editor because it is not dependent on any other Unity package.
 
 ### Why does a warning appear when I use AutoReference?
 
@@ -78,7 +83,7 @@ public class BetterExampleClass : MonoBehaviour
 This warning shows up when the field to be auto referenced is not referenceable through the Unity Editor (like all 
 primitive data structures such as integers, floats, and booleans). Only the classes inherited from 
 [Component](https://docs.unity3d.com/ScriptReference/Component.html) are referenceable through the Unity Editor. The 
-exception is the [IReferenceable](Documentation~/IReferenceable.md) interface, which also makes it possible to be auto 
+exception is the [IReferenceable](API~/IReferenceable.md) interface, which also makes it possible to be auto 
 referenced.
 
 ### It is possible for custom classes to be auto referenced?
@@ -86,5 +91,5 @@ referenced.
 Yes. It is possible for classes that don't inherit from 
 [Component](https://docs.unity3d.com/ScriptReference/Component.html) to be auto referenced, such as 
 [serializable](https://learn.microsoft.com/en-us/dotnet/api/system.serializableattribute?view=net-9.0) classes. These 
-classes need to implement the [IReferenceable](Documentation~/IReferenceable.md) interface to function properly with the
+classes need to implement the [IReferenceable](API~/IReferenceable.md) interface to function properly with the
 AutoReference attribute.

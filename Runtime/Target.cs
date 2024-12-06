@@ -9,6 +9,8 @@
     ///     <li><see cref="Target.Parent"/>: GetComponentInParent()</li>
     /// </ul>
     /// </summary>
+    /// <seealso href="https://github.com/Incantium/Auto-Reference/blob/main/API~/Target.md">
+    /// Target</seealso>
     public enum Target 
     {
         /// <summary>

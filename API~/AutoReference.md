@@ -16,8 +16,8 @@ field or [GetComponent()](https://docs.unity3d.com/6000.0/Documentation/ScriptRe
 in `Start()`. This attribute works perfectly together with the 
 [RequireComponent](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/RequireComponent.html) attribute.
 
-With this attribute, you can specify where the component is the near hierarchy around the current game object. You can
-choose from:
+With this attribute, you can specify where the component is the near [hierarchy](Target.md) around the current game 
+object. You can choose from:
 
 - Current: Searches through the current game object with the required component.
 - Children: Searches through the children for the required component. This will always take the first component of the
@@ -31,6 +31,8 @@ Under the hood, this attribute uses the corresponding
 [GetComponent()](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject.GetComponent.html) while
 removing the field entirely. As it still uses a reference field, this attribute does not require any more usage of the
 Unity `Start()`, giving a slight performance boost.
+
+## Example
 
 Normally, you would create a reference to a component on the same game object like this:
 
@@ -64,11 +66,14 @@ public class BetterExampleClass : MonoBehaviour
 }
 ```
 
+## Notes
+
 > **Info**: The AutoReference only works with 
 > [SerializeField](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/SerializeField.html) or public 
 > variables, so that it is visible by the Unity Editor.
 
-> **Info**: AutoReference is only able to auto reference UnityEngine Component or classes that implement IReferenceable.
+> **Info**: AutoReference is only able to auto reference UnityEngine Component or classes that implement 
+> [IReferenceable.md](IReferenceable.md).
 
 > **Warning**: This attribute will only auto reference upon inspecting the component it is included in. In normal 
 > circumstances while using this attribute in combination with
@@ -79,6 +84,6 @@ public class BetterExampleClass : MonoBehaviour
 
 ## Variables
 
-### :green_book: `Target` target
+### :green_book: [`Target`](Target.md) target
 
 The target location of the component for auto-referencing.
