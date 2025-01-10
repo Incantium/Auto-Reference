@@ -1,8 +1,8 @@
 ﻿# Auto Reference
 
-`Unity 2022.3 (or higher)`
-`.NET Standard 2.1`
-`C# 9.0`
+![Unity version](https://img.shields.io/badge/2022.3+-cccccc?logo=unity)
+![.NET version](https://img.shields.io/badge/Standard_2.1-5027d5?logo=dotnet)
+![C# version](https://custom-icon-badges.demolab.com/badge/9.0-67217a?logo=cshrp)
 
 ## Overview
 
