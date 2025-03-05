@@ -9,7 +9,7 @@
 Are you tired writing [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) in each 
 script to reference another script, even though this can never go wrong (when using 
 [`[RequireComponent]`](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/RequireComponent.html))? This 
-package named AutoReference solves that problem by automatically referencing other script without any extra code.
+package named Auto Reference solves that problem by automatically referencing other script without any extra code.
 
 ## Installation instructions
 
@@ -22,10 +22,13 @@ package named AutoReference solves that problem by automatically referencing oth
 
 ## Limitations
 
-- It is impossible to reference classes that cannot be referenced through the Unity Editor (that do not inherit from 
+- Auto Reference is build for static references that do **not** change. For example, referencing a component on the same
+  (or closely related) game object is a valid way to use Auto Reference. This package does **not** automatically 
+  reference a component when adding/removing during gameplay.
+- Auto Reference can only automatically reference classes that are serializable through the Unity Editor (see 
   [Component](https://docs.unity3d.com/ScriptReference/Component.html)).
-- AutoReference works incorrectly when a prefab in a scene auto references outside the prefab's scope. This is a known
-  bug.
+- Auto Reference works incorrectly when a prefab in a scene auto references a game object outside the prefab's scope. 
+  This is a known bug.
 
 ## Workflow
 
@@ -46,7 +49,7 @@ public class ExampleClass : MonoBehaviour
 }
 ```
 
-But with AutoReference, you can enhance it to this:
+But with Auto Reference, you can enhance it to this:
 
 ```csharp
 using Incantium.Attributes;
@@ -56,27 +59,27 @@ using UnityEngine;
 public class BetterExampleClass : MonoBehaviour
 {
     [SerializeField]
-    [AutoReference]
+    [Auto Reference]
     private RigidBody rb;
 }
 ```
 
 ## References
 
-| Class                                    | Description                                                            |
-|------------------------------------------|------------------------------------------------------------------------|
-| [AutoReference](API~/AutoReference.md)   | The AutoReference attribute to automatically reference another script. |
-| [IReferenceable](API~/IReferenceable.md) | Interface for other classes able to be auto referenced.                |
-| [Target](API~/Target.md)                 | The target location of the automatically referenced script.            |
+| Class                                    | Description                                                             |
+|------------------------------------------|-------------------------------------------------------------------------|
+| [Auto Reference](API~/AutoReference.md)  | The Auto Reference attribute to automatically reference another script. |
+| [IReferenceable](API~/IReferenceable.md) | Interface for other classes able to be auto referenced.                 |
+| [Target](API~/Target.md)                 | The target location of the automatically referenced script.             |
 
 ## Frequently Asked Questions
 
 ### Which Unity versions are compatible with this package?
 
 This package is heavily tested in `Unity 2022.3.44f1` and `Unity 6000.0.25f1`. It is expected that this package also 
-works in older and newer versions of the Unity Editor because it is not dependent on any other Unity package.
+works in older and newer versions of the Unity Editor because it is not dependent on any other Unity packages.
 
-### Why does a warning appear when I use AutoReference?
+### Why does a warning appear when I use Auto Reference?
 
 ![Warning not referenceable.png](Images~/Warning%20not%20referenceable.png)
 
@@ -92,4 +95,4 @@ Yes. It is possible for classes that don't inherit from
 [Component](https://docs.unity3d.com/ScriptReference/Component.html) to be auto referenced, such as 
 [serializable](https://learn.microsoft.com/en-us/dotnet/api/system.serializableattribute?view=net-9.0) classes. These 
 classes need to implement the [IReferenceable](API~/IReferenceable.md) interface to function properly with the
-AutoReference attribute.
+Auto Reference attribute.
