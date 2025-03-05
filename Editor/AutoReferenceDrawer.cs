@@ -13,11 +13,6 @@ namespace Incantium.Attributes.Editor
     internal sealed class AutoReferenceDrawer : PropertyDrawer
     {
         /// <summary>
-        /// The static height of the property field when there is an error to be shown.
-        /// </summary>
-        private const int HEIGHT = 30;
-        
-        /// <summary>
         /// The referencer to solve the auto referencing.
         /// </summary>
         private IReferencer searcher;
@@ -31,24 +26,23 @@ namespace Incantium.Attributes.Editor
             if (attribute is not AutoReference auto) return;
             if (searcher is { valid: true }) return;
             
-            if (Init(position, property)) return;
+            if (Init(property)) return;
             
             searcher.Search(auto.target);
             
             if (searcher.valid) return;
 
             var message = $"Unable to locate missing '{searcher.type}' for auto referencing at {auto.target.GenerateMessage()}.";
-            EditorGUI.HelpBox(position, message, MessageType.Error);
+            EditorGUILayout.HelpBox(message, MessageType.Error);
         }
 
         /// <summary>
         /// Method to instantiate the applicable <see cref="IReferencer"/> to be able to auto reference correctly.
         /// </summary>
-        /// <param name="position">The position of the property field.</param>
         /// <param name="property">The property to auto reference.</param>
         /// <returns>True when the targeted object to be auto referenced is unable to be done, false
         /// otherwise.</returns>
-        private bool Init(Rect position, SerializedProperty property)
+        private bool Init(SerializedProperty property)
         {
             if (searcher != null) return false;
             
@@ -61,7 +55,7 @@ namespace Incantium.Attributes.Editor
             else if (!typeof(Component).IsAssignableFrom(fieldInfo.FieldType))
             {
                 var message = $"Auto referencing is only applicable to classes derived from '{typeof(Object)}' or '{typeof(IReferenceable)}'.";
-                EditorGUI.HelpBox(position, message, MessageType.Warning); 
+                EditorGUILayout.HelpBox(message, MessageType.Warning); 
                 return true;
             }
             else
@@ -72,18 +66,6 @@ namespace Incantium.Attributes.Editor
             return false;
         }
         
-        /// <summary>
-        /// Method to determine how large the property field height should be.
-        /// </summary>
-        /// <param name="property">The property to draw.</param>
-        /// <param name="label">The label associated with the property.</param>
-        /// <returns>The default <see cref="HEIGHT"/> when no <see cref="IReferencer"/> could be located for the target
-        /// property or if the target property is not findable, otherwise 0.</returns>
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            if (searcher == null) return HEIGHT;
-
-            return searcher.valid ? 0 : HEIGHT;
-        }
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => 0;
     }
 }
