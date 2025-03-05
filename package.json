@@ -1,6 +1,6 @@
 {
-  "name": "com.incantium.autoreference",
-  "version": "1.0.1",
+  "name": "com.incantium.auto-reference",
+  "version": "1.0.2",
   "displayName": "Auto Reference",
   "description": "Never use GetComponent in Awake or Start anymore. This attribute automatically references it for you.",
   "unity": "2022.3",
